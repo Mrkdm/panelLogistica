@@ -71,9 +71,11 @@
     width: 18rem;
   }
   
-  #content-wrapper.toggled #sidebar-container {
-    margin-left: 0;
+   #sidebar-container .active {
+    margin-left: -120px;
   }
+
+
   
   .circle {
     width: 50px;

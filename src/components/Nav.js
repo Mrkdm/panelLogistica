@@ -1,12 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import useAuth from '../auth/useAuth'
+import routes from '../helpers/routes';
+import Cookies from 'universal-cookie';
 const Nav = () => {
+  const cookies = new Cookies()
+  const {logout} = useAuth();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     return (
-        <div >
+
                <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <div className="container">
-          <button className="btn btn-primary text-primary" id="menu-toggle">Mostrar / esconder menu</button>
-
+        
+      <div>
+        <button
+          className="btn-menu"
+          onClick={()=> setIsSidebarOpen(true)}
+          type="button"
+        >
+         <button className='btn btn-success'>O</button>
+        </button>
+      </div>
+        <div
+        onClick={() => setIsSidebarOpen(false)}
+        className={`fixed inset-0 z-20 block transition-opacity bg-black opacity-50 lg:hidden ${
+          isSidebarOpen ? "block" : "hidden"
+        }`}
+      />
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -20,20 +40,20 @@ const Nav = () => {
               <li className="nav-item dropdown">
                 <Link className="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Diego
+                    {cookies.get('user').nombre}
                 </Link>
                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <Link className="dropdown-item" href="#">Mi perfil</Link>
-                  <Link className="dropdown-item" href="#">Suscripciones</Link>
+                  <Link className="dropdown-item" to={routes.account}>Mi perfil</Link>
+            
                   <div className="dropdown-divider"></div>
-                  <Link className="dropdown-item" href="#">Cerrar sesión</Link>
+                  <button className="dropdown-item " onClick={logout}>Cerrar sesión</button>
                 </div>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-        </div>
+
     )
 }
 
