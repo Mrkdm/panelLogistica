@@ -71,7 +71,7 @@
     width: 18rem;
   }
   
-   #sidebar-container .active {
+   #sidebar-container  {
     margin-left: -120px;
   }
 

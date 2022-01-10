@@ -13,20 +13,11 @@ const Nav = () => {
         <div className="container">
         
       <div>
-        <button
-          className="btn-menu"
-          onClick={()=> setIsSidebarOpen(true)}
-          type="button"
-        >
-         <button className='btn btn-success'>O</button>
-        </button>
+
+
+
       </div>
-        <div
-        onClick={() => setIsSidebarOpen(false)}
-        className={`fixed inset-0 z-20 block transition-opacity bg-black opacity-50 lg:hidden ${
-          isSidebarOpen ? "block" : "hidden"
-        }`}
-      />
+  
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
