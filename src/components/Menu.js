@@ -1,11 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import routes from '../helpers/routes'
 import logo from '../imgs/Logo-Logistica.png'
 import './App.css'
 const Menu = () => {
 
-  const [status, setStatus] = useState(0)
 
 
     return (

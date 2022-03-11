@@ -3,7 +3,6 @@ import { useState } from 'react/cjs/react.development'
 import useAuth from '../../auth/useAuth'
 
 
-const userCredentials ={}
 
 const Login = () => {
     const [username, setUsername] = useState(null)

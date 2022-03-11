@@ -1,5 +1,5 @@
 const user= {
-    usuario: "Josias Alcocer",
+    usuario: "admin45",
     password: "logis45"
 }
 

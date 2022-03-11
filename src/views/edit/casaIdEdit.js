@@ -1,15 +1,13 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useState } from 'react/cjs/react.development'
-import Menu from '../../components/Menu'
-import Nav from '../../components/Nav'
+
 import 'react-awesome-slider/dist/styles.css'
 import AwesomeSlider from 'react-awesome-slider'
 import swal from 'sweetalert'
 
 const CasaIdEdit = () => {
-    const history = useHistory()
     const { id } = useParams()
     const [casa, setCasa] = useState(null)
     const [images, setImages] = useState([])
@@ -22,7 +20,7 @@ const CasaIdEdit = () => {
             await axios.get(`https://logis.live/api/images/${id}`).then((res) => setCasa(res.data)).catch(err => console.log(err))
 
         })()
-    }, [])
+    }, [id])
     const newData = {
         ubication: "Merida"
     }
@@ -118,7 +116,7 @@ const CasaIdEdit = () => {
                                             }} className='form-control' name="" id="">
                                                 <option selected="selected" value="Merida">Merida</option>
                                                 <option value="Cancun">Cancun</option>
-                                                <option value="Playa del carmen">Playa del carmen</option>
+                                                <option value="Playa">Playa del carmen</option>
                                             </select>
 
                                             <h5>Descripción:</h5>

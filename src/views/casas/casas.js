@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import swal from 'sweetalert'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import Menu from '../../components/Menu'
 import Nav from '../../components/Nav'
 const Edit = () => {
@@ -25,6 +24,11 @@ const Edit = () => {
                       swal("Tu propiedad a sido eliminada correctamente",{
                           icon: "success"
                       })
+                  }
+                  else{
+                    swal("Error",{
+                        icon: "danger"
+                    })
                   }
               })
             } else {

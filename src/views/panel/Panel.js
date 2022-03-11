@@ -3,12 +3,10 @@ import './bootstrap.min.css'
 
 import './app.css'
 
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Menu from '../../components/Menu'
 import Nav from '../../components/Nav'
-import useAuth from '../../auth/useAuth'
-import routes from '../../helpers/routes'
+
 import Cookies from 'universal-cookie'
 
 
@@ -25,20 +23,21 @@ const Panel = () => {
     await axios.get(`https://logis.live/api/images/${id}`).then((res) => { setPropiedad(res.data) }).catch((err) => console.log(err))
   }
 
-  const {logout} = useAuth()
   const [clientQuestion, setClientQuestion] = useState([])
   const [clientConsult, setClientConsult] = useState([])
   useEffect(() => {
 
     (async () => {
-      await axios.get('https://logis.live/api/messageConsult/').then((res) => {setClientConsult(res.data)
-    console.log(res)}).catch(err=> console.log(err))
+      await axios.get('https://logis.live/api/messageConsult/').then((res) => {
+        setClientConsult(res.data)
+        console.log(res)
+      }).catch(err => console.log(err))
     })();
     (async () => {
-      await axios.get('https://logis.live/api/messageQuestion/').then((res) => {setClientQuestion(res.data)}).catch(err => console.log(err))
+      await axios.get('https://logis.live/api/messageQuestion/').then((res) => { setClientQuestion(res.data) }).catch(err => console.log(err))
     })();
- 
-  }, [])
+
+  }, [setStatus])
 
 
 
@@ -49,12 +48,12 @@ const Panel = () => {
       <Menu />
       <div id="page-content-wrapper" className="w-100 bg-light-blue">
 
-      <Nav/>
+        <Nav />
 
         <div id="content" className="container-fluid p-5">
           <section className="py-3">
 
-    
+
 
             <div className="row mb-3">
 
@@ -65,22 +64,22 @@ const Panel = () => {
                       <tr>
                         <th colspan="2"><small className="font-weight-bold">Usuarios</small></th>
                         <th scope="col"><small className="font-weight-bold">Estatus</small></th>
-                 
+
                       </tr>
                     </thead>
                     <tbody>
-                  
-                 {cookies
-                 ?    <tr className="shadow-sm">
-                 <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOH2aZnIHWjMQj2lQUOWIL2f4Hljgab0ecZQ&usqp=CAU" className="img-fluid rounded-circle avatar"
-                   alt="https://generated.photos/" /></td>
-                 <td><span className="d-block">{cookies.get('user').nombre}</span><small className="text-muted">{cookies.get('user').role}</small>
-                 </td>
-                 <td className="align-middle"><span className="badge badge-success text-white">Activo</span></td>
-            
-               </tr>: <div className=""></div>
-                 }
-                    
+
+                      {cookies
+                        ? <tr className="shadow-sm">
+                          <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOH2aZnIHWjMQj2lQUOWIL2f4Hljgab0ecZQ&usqp=CAU" className="img-fluid rounded-circle avatar"
+                            alt="https://generated.photos/" /></td>
+                          <td><span className="d-block">{cookies.get('user').nombre}</span><small className="text-muted">{cookies.get('user').role}</small>
+                          </td>
+                          <td className="align-middle"><span className="badge badge-success text-white">Activo</span></td>
+
+                        </tr> : <div className=""></div>
+                      }
+
                     </tbody>
                   </table>
                 </div>
@@ -121,15 +120,15 @@ const Panel = () => {
 
             {
               status
-              
+
                 ? <table class="table table-bordered table">
-           
+
                   <thead>
                     <tr>
                       <span onClick={() => setStatus(false)} className='btn btn-danger'><i className="icon ion-md-close-circle "></i></span>
                     </tr>
                     <tr>       <hr />
-<h3>Mensajes de propiedad</h3></tr>
+                      <h3>Mensajes de propiedad</h3></tr>
                     <tr>
                       <th scope="col">#ID</th>
                       <th scope="col">Nombre</th>
@@ -145,7 +144,7 @@ const Panel = () => {
                         return (
                           <tr>
                             <th scope="row">{user._id}</th>
-                            <td>{user.name.toUpperCase()}</td>
+                            <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td>{user.tel}</td>
                             <td>{user.message}</td>
@@ -161,43 +160,43 @@ const Panel = () => {
                 : <div className=""></div>
             }
 
-            { status
-            ?       
-             <table class="table table-bordered table">
-                     
-            <thead>
-            <tr>
-            <hr />
-            <h3>Mensajes de Consulta</h3>
-            </tr>
-              <tr>
-                <th scope="col">#ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Email</th>
-                <th scope="col">Numero</th>
-       
-              </tr>
-            </thead>
-            <tbody>
-            {
-                  clientConsult.userConsult.map(user => {
-                    return (
-                      <tr>
-                        <th scope="row">{user._id}</th>
-                        <td>{user.name.toUpperCase() + ' ' + user.lastname.toUpperCase()}</td>
-                        <td>{user.email}</td>
-                        <td>{user.tel}</td>
-                      
-                        
-                      </tr>
-                    )
-                  })
-                }
+            {status
+              ?
+              <table class="table table-bordered table">
 
-            </tbody>
-          </table>
-          : <div className=""></div>
-            
+                <thead>
+                  <tr>
+                    <hr />
+                    <h3>Mensajes de Consulta</h3>
+                  </tr>
+                  <tr>
+                    <th scope="col">#ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Numero</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    clientConsult.userConsult.map(user => {
+                      return (
+                        <tr>
+                          <th scope="row">{user._id}</th>
+                          <td>{user.name + ' ' + user.lastname}</td>
+                          <td>{user.email}</td>
+                          <td>{user.tel}</td>
+
+
+                        </tr>
+                      )
+                    })
+                  }
+
+                </tbody>
+              </table>
+              : <div className=""></div>
+
 
             }
             {
@@ -211,12 +210,12 @@ const Panel = () => {
                         <img src={propiedad.url[0]} className='img-fluid' alt="" />
                       </div>
                     </div>
-                    </div>
+                  </div>
 
-                  </div>: <div></div>
-          }
+                </div> : <div></div>
+            }
 
-                </section>
+          </section>
         </div>
       </div>
     </div>
