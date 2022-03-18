@@ -7,13 +7,12 @@ import axios from 'axios'
 import Menu from '../../components/Menu'
 import Nav from '../../components/Nav'
 
-import Cookies from 'universal-cookie'
+
 
 
 
 
 const Panel = () => {
-  const cookies = new Cookies()
 
 
   const [status, setStatus] = useState(false)
@@ -57,35 +56,9 @@ const Panel = () => {
 
             <div className="row mb-3">
 
-              <div className="col-xl-7 col-lg-12">
-                <div className="table-responsive">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th colspan="2"><small className="font-weight-bold">Usuarios</small></th>
-                        <th scope="col"><small className="font-weight-bold">Estatus</small></th>
+             
 
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                      {cookies
-                        ? <tr className="shadow-sm">
-                          <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOH2aZnIHWjMQj2lQUOWIL2f4Hljgab0ecZQ&usqp=CAU" className="img-fluid rounded-circle avatar"
-                            alt="https://generated.photos/" /></td>
-                          <td><span className="d-block">{cookies.get('user').nombre}</span><small className="text-muted">{cookies.get('user').role}</small>
-                          </td>
-                          <td className="align-middle"><span className="badge badge-success text-white">Activo</span></td>
-
-                        </tr> : <div className=""></div>
-                      }
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div className="col-xl-5 col-lg-12">
+              <div className="col-xl-9 col-lg-12">
                 <div className="card mb-5 shadow-sm border-0 shadow-hover">
                   <div className="card-header bg-light border-0 pt-3 pb-0">
                     <h6 className="mb-0">Contactalos</h6>

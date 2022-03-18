@@ -1,7 +1,6 @@
 
 import React from 'react'
 import {createContext} from 'react'
-import { useLocation } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import roles from '../helpers/roles'
 import user from '../helpers/users'

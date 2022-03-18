@@ -38,7 +38,7 @@ const Edit = () => {
     }
     useEffect(() => {
         (async () => await axios.get('https://logis.live/api/images').then((res) => setProperty(res.data)).catch((err) => console.log(err)))()
-    }, [deleteProperty])
+    }, [])
 
     return (
         <div className="d-flex">

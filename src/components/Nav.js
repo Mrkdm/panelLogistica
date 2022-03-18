@@ -1,12 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../auth/useAuth'
 import routes from '../helpers/routes';
-import Cookies from 'universal-cookie';
 const Nav = () => {
-  const cookies = new Cookies()
   const {logout} = useAuth();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     return (
 
                <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -26,13 +23,10 @@ const Nav = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
               <li className="nav-item active">
-                <Link className="nav-link text-dark" href="#">Inicio</Link>
+                <Link className="nav-link text-dark" to="/">Inicio</Link>
               </li>
               <li className="nav-item dropdown">
-                <Link className="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {cookies.get('user').nombre}
-                </Link>
+              
                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <Link className="dropdown-item" to={routes.account}>Mi perfil</Link>
             
