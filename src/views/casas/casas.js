@@ -70,9 +70,9 @@ const Edit = () => {
                 <Nav />
                 <div id="content" className="container-fluid p-5 ">
                     <nav class="nav">
-                        <a class="nav-link disabled" style={{cursor:"pointer"}} onClick={casasCancun}>Cancún</a>
-                        <a class="nav-link disabled" style={{cursor:"pointer"}}  onClick={casasMerida}>Mérida</a>
-                        <a class="nav-link disabled" style={{cursor:"pointer"}} onClick={casasTulum} >Tulum</a>
+                        <p class="nav-link disabled" style={{cursor:"pointer"}} onClick={casasCancun}>Cancún</p>
+                        <p class="nav-link disabled" style={{cursor:"pointer"}}  onClick={casasMerida}>Mérida</p>
+                        <p class="nav-link disabled" style={{cursor:"pointer"}} onClick={casasTulum} >Tulum</p>
                         <p class="nav-link" style={{cursor:"pointer"}} onClick={casasPlaya}>Playa del carmen</p>
                     </nav>
                     <div className="bg-blue w-100">
@@ -102,7 +102,7 @@ const Edit = () => {
                                                         <p className=" m-2"> {img.ubication}</p>
                                                     </div>
                                                     <div className="d-flex">
-                                                        <i style={{ color: '#47f', cursor: 'pointer' }} onClick={() => history.push(`/casas/${img._id}`)} className=" icon ion-md-create lead m-4"></i>
+                                                        <i style={{ color: '#47f', cursor: 'pointer' }} onClick={() => history.replace(`/casas/${img._id}`)} className=" icon ion-md-create lead m-4"></i>
                                                         <i style={{ color: '#f47', cursor: 'pointer' }} onClick={() => deleteProperty(img._id)} className="icon ion-md-trash lead m-4"></i>
                                                     </div>
                                                 </div>

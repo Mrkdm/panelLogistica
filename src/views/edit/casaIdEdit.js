@@ -1,7 +1,7 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useState } from 'react/cjs/react.development'
+
 
 import 'react-awesome-slider/dist/styles.css'
 import AwesomeSlider from 'react-awesome-slider'
@@ -9,7 +9,7 @@ import swal from 'sweetalert'
 
 const CasaIdEdit = () => {
     const { id } = useParams()
-    const [casa, setCasa] = useState(null)
+    const [casa, setCasa] = useState([])
     const [images, setImages] = useState([])
     const [imagesPreview, setImagesPreview] = useState([null])
 
@@ -114,7 +114,7 @@ const CasaIdEdit = () => {
                                             <select onChange={(e) => {
                                                 newData.ubication = e.target.value
                                             }} className='form-control' name="" id="">
-                                                <option selected="selected" value="Merida">Merida</option>
+                                                <option  value="Merida">Merida</option>
                                                 <option value="Cancun">Cancun</option>
                                                 <option value="Playa">Playa del carmen</option>
                                             </select>
@@ -127,7 +127,9 @@ const CasaIdEdit = () => {
                                         </div>
                                         <div className="col-lg-6 ">
 
-                                            <AwesomeSlider bullets={false}>
+                                            {
+                                                casa.url ? 
+                                                <AwesomeSlider bullets={false}>
                                                 {
                                                     casa.url.map((imgs) => (
 
@@ -147,12 +149,15 @@ const CasaIdEdit = () => {
 
                                                     ))
                                                 }
-                                            </AwesomeSlider>: <div className=""></div>
+                                            </AwesomeSlider>
+                                            : <div className=""></div>
+
+                                            }
                                             <div className="mb-4">
 
                                                 <div className="d-flex">
-                                                    <div class="file-select m-5" id="src-file1" >
-                                                        <input type="file" onChange={uploadMultipleImages} multiple aria-label="Archivo" />
+                                                    <div className="file-select m-5" id="src-file1" >
+                                                        <input type="file" onChange={()=>uploadMultipleImages} multiple aria-label="Archivo" />
                                                     </div>
                                                     
                                                     <div className="m-5">
@@ -162,13 +167,16 @@ const CasaIdEdit = () => {
                                                 
                                                 <div className="col-xl-6 col-lg-6">
                                                     {
+                                                        imagesPreview ?
                                                         imagesPreview.map(url => (
-                                                            <div className="row">
+                                                            <div key={url} className="row">
                                                                 <div className="col-lg-12 p-3">
                                                                     <img src={url} className="img-fluid" alt="" />
                                                                 </div>
                                                             </div>
                                                         ))
+                                                        :<div></div>
+                                                        
                                                     }
                                                 </div>
 
